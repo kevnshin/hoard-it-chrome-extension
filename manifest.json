@@ -6,9 +6,7 @@
   "description": "An extension that saves snippets of info",
   
   "permissions": [
-    "contextMenus",
-    "http://localhost:4000/*",
-    "https://localhost:4000/*"
+    "contextMenus"
   ],
 
   "browser_action": {
@@ -21,16 +19,16 @@
     "persistent": false,
     "scripts": [
       "js/jquery-2.1.3.min.js",
-      "js/contextMenu.js"
+      "js/background.js"
     ]
-  },
+  }
 
-  "content_scripts": [
-    {
-      "matches": ["http://*/*", "https://*/*"],
-      "js": ["js/jquery-2.1.3.min.js", "js/content.js"]
-    }
-  ]
+  // "content_scripts": [
+  //   {
+  //     "matches": ["http://*/*", "https://*/*"],
+  //     "js": ["js/jquery-2.1.3.min.js", "js/content.js"]
+  //   }
+  // ]
 
 
 }
