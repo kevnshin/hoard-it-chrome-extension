@@ -6,12 +6,14 @@
   "description": "An extension that saves snippets of info",
   
   "permissions": [
-    "contextMenus"
+    "contextMenus",
+    "tabs",
+    "activeTab"
   ],
 
   "browser_action": {
     "default_icon": "icon.png",
-    "default_popup": "popup.html",
+    // "default_popup": "popup.html",
     "default_title": "Hello World Extension"
   },
 
@@ -21,14 +23,18 @@
       "js/jquery-2.1.3.min.js",
       "js/background.js"
     ]
-  }
+  },
 
-  // "content_scripts": [
-  //   {
-  //     "matches": ["http://*/*", "https://*/*"],
-  //     "js": ["js/jquery-2.1.3.min.js", "js/content.js"]
-  //   }
-  // ]
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": [
+        "js/jquery-2.1.3.min.js",
+        "js/content.js"
+      ],
+      "run_at": "document_end"
+    }
+  ]
 
 
 }

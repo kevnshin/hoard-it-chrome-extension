@@ -1,25 +1,11 @@
-window.onload = function () {
-  
-
-  document.onmouseup = function () {
-    getSelectionText();
-  } 
-
-  function getSelectionText () {
-    var selection = window.getSelection().toString().trim();
-    var url = document.URL;
-    if( selection && selection !== "" ){
-      // alert("selection: " + "\n" + selection + "\n\n" + "from: " + url );
-    
-      var hoard = {
-        snippet: selection,
-        url: url
-      };
-      
-      chrome.runtime.sendMessage(hoard);
-
+chrome.extension.onMessage.addListener(function(request, sender, sendResponse) {
+  if (request.method == "getSelection") {
+    var snippet = {
+      snippet: window.getSelection().toString().trim(),
+      url: document.URL
     }
+    sendResponse(snippet);
+  } else {
+    sendResponse({message: "Did not recognize that request"});
   }
-
-
-}
+});
